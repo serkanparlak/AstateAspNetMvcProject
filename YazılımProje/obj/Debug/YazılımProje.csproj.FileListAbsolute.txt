@@ -1,0 +1,128 @@
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\YazılımProje.dll.config
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\YazılımProje.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\YazılımProje.pdb
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\Antlr3.Runtime.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\EntityFramework.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\Microsoft.Web.Infrastructure.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\Newtonsoft.Json.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Net.Http.Formatting.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Http.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Http.WebHost.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Mvc.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Optimization.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Providers.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Razor.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.WebPages.Deployment.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.WebPages.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.WebPages.Razor.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\WebGrease.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\EntityFramework.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\Newtonsoft.Json.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Net.Http.Formatting.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Http.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Http.WebHost.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Mvc.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.Razor.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.WebPages.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.WebPages.Deployment.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\bin\System.Web.WebPages.Razor.xml
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\obj\Debug\YazılımProje.csprojResolveAssemblyReference.cache
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\obj\Debug\YazılımProje.dll
+c:\users\yusuf\documents\visual studio 2013\Projects\YazılımProje\YazılımProje\obj\Debug\YazılımProje.pdb
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\YazılımProje.dll.config
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\YazılımProje.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\YazılımProje.pdb
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\Antlr3.Runtime.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\EntityFramework.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\Microsoft.Web.Infrastructure.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\Newtonsoft.Json.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Net.Http.Formatting.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Http.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Http.WebHost.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Mvc.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Optimization.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Providers.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Razor.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.WebPages.Deployment.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.WebPages.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.WebPages.Razor.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\WebGrease.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\EntityFramework.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\Newtonsoft.Json.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Net.Http.Formatting.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Http.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Http.WebHost.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Mvc.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.Razor.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.WebPages.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.WebPages.Deployment.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\bin\System.Web.WebPages.Razor.xml
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\obj\Debug\YazılımProje.csprojResolveAssemblyReference.cache
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\obj\Debug\YazılımProje.dll
+D:\Dersler\Yazılım Projesi\YazılımProje\YazılımProje\obj\Debug\YazılımProje.pdb
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\YazılımProje.dll.config
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\YazılımProje.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\YazılımProje.pdb
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\Microsoft.Web.Infrastructure.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\Newtonsoft.Json.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Net.Http.Formatting.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Http.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Http.WebHost.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Mvc.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Razor.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.WebPages.Deployment.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.WebPages.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.WebPages.Razor.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Net.Http.Formatting.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Http.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Http.WebHost.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Mvc.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Razor.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.WebPages.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.WebPages.Deployment.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.WebPages.Razor.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\obj\Debug\YazılımProje.dll
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\obj\Debug\YazılımProje.pdb
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\obj\Debug\YazılımProje.csprojResolveAssemblyReference.cache
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\Antlr3.Runtime.pdb
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\System.Web.Optimization.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\EntityFramework.xml
+D:\Dersler\3.Sınıf\Yazılım Projesi\EmlakProje\YazılımProje\bin\Microsoft.Web.Infrastructure.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\YazılımProje.dll.config
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\YazılımProje.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\YazılımProje.pdb
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\Antlr3.Runtime.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\EntityFramework.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\Microsoft.Web.Infrastructure.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\Newtonsoft.Json.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Net.Http.Formatting.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Http.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Http.WebHost.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Mvc.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Optimization.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Providers.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Razor.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.WebPages.Deployment.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.WebPages.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.WebPages.Razor.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\WebGrease.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\Antlr3.Runtime.pdb
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\Newtonsoft.Json.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Optimization.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\EntityFramework.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Net.Http.Formatting.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Http.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Http.WebHost.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Mvc.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.Razor.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.WebPages.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.WebPages.Deployment.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\bin\System.Web.WebPages.Razor.xml
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\obj\Debug\YazılımProje.csprojAssemblyReference.cache
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\obj\Debug\YazılımProje.csproj.CoreCompileInputs.cache
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\obj\Debug\YazılımProje.csproj.CopyComplete
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\obj\Debug\YazılımProje.dll
+D:\Emlak Sitesi (MVC)\EmlakProje\YazılımProje\obj\Debug\YazılımProje.pdb

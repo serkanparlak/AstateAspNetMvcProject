@@ -1,0 +1,222 @@
+﻿@{
+    ViewBag.Title = "IlanTurleri";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    int i = 1, j = 1, k = 1;
+}
+<style>
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+        padding:8px 8px;
+    }
+</style>
+
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Ilan Turleri</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/Admin/Index/">Admin</a></li>
+            <li class="active">Ilan Turleri Düzenle</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="white-box">
+            <div class="form-group">
+                <form class="form-horizontal form-material" onsubmit="return false">
+                    <div class="col-md-9" style="float:left; padding:0">
+                        <input type="text" placeholder="  Konut Türü Ekle" class="form-control form-control-line" name="konutEkleInput" id="konutEkleInput" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="submit" class="btn btn-success" style="vertical-align:central" value="Ekle" onclick="konutekle()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="white-box">
+            <div class="form-group">
+                <form class="form-horizontal form-material" onsubmit="return false">
+                    <div class="col-md-9" style="float:left; padding:0">
+                        <input type="text" placeholder="  İşyeri Türü Ekle" class="form-control form-control-line" name="isyeriEkleInput" id="isyeriEkleInput" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="submit" class="btn btn-primary" style="vertical-align:central" value="Ekle" onclick="isyeriekle()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="white-box">
+            <div class="form-group">
+                <form class="form-horizontal form-material" onsubmit="return false">
+                    <div class="col-md-9" style="float:left; padding:0">
+                        <input type="text" placeholder="  Arsa Türü Ekle" class="form-control form-control-line" name="arsaEkleInput" id="arsaEkleInput" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="submit" class="btn btn-danger" style="vertical-align:central" value="Ekle" onclick="arsaekle()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="white-box analytics-info" style="margin-bottom:0">
+            <h3 class="box-title" style="float:left">Konut Türleri</h3>
+            <ul class="list-inline two-part">
+                <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">@ViewBag.KonutSayi</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="white-box analytics-info" style="margin-bottom:0">
+            <h3 class="box-title" style="float:left">Işyeri Türleri</h3>
+            <ul class="list-inline two-part">
+                <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">@ViewBag.IsyeriSayi</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-4 col-sm-6 col-xs-12">
+        <div class="white-box analytics-info" style="margin-bottom:0">
+            <h3 class="box-title" style="float:left">Arsa Türleri</h3>
+            <ul class="list-inline two-part">
+                <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">@ViewBag.ArsaSayi</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="white-box">
+            <div class="table-responsive">
+                <table class="table" id="konutTablo">
+                    @foreach (var item in ViewBag.KonutTur)
+                    {
+                        <tr><td>@i</td><td>@item.konutTuruAdi</td></tr>
+                        i++;
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="white-box">
+            <div class="table-responsive">
+                <table class="table" id="isyeriTablo">
+                    @foreach (var item in ViewBag.IsyeriTur)
+                    {
+                        <tr><td>@j</td><td>@item.isyeriTuruAdi</td></tr>
+                        j++;
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="white-box">
+            <div class="table-responsive">
+                <table class="table" id="arsaTablo">
+                    @foreach (var item in ViewBag.ArsaTur)
+                    {
+                        <tr><td>@k</td><td>@item.arsaTuruAdi</td></tr>
+                        k++;
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    function konutekle() {
+        var deger = $("#konutEkleInput").val()
+        if (deger != "") {
+            $.ajax({
+                method: 'POST',
+                url: '/Admin/konutTuruEkle?kntTur=' + deger,
+                success: function (sonuc) {
+                    if (sonuc) {
+                        $("#konutTablo").append("<tr><td>@i</td><td>"+deger+"</td></tr>")
+                    }
+                    else {
+                        $("#konutTablo").append(
+                            "<tr id='gecici'><td>*</td><td style='color:red'>'Ekleme başarısız'</td></tr>"
+                            );
+                        setTimeout(function () {
+                            $("#gecici").fadeOut("slow")
+                        }, 5000)
+                    }
+                },
+                error: function () {
+                }
+            })
+
+        }
+    }
+    function isyeriekle() {
+        var deger = $("#isyeriEkleInput").val()
+        if (deger != "") {
+            $.ajax({
+                method: 'POST',
+                url: '/Admin/isyeriTuruEkle?isyTur=' + deger,
+                success: function (sonuc) {
+                    if (sonuc) {
+                        $("#isyeriTablo").append("<tr><td>@i</td><td>"+deger+"</td></tr>")
+                    }
+                    else {
+                        $("#konutTablo").append(
+                            "<tr id='gecici'><td>*</td><td style='color:red'>'Ekleme başarısız'</td></tr>"
+                            );
+                        setTimeout(function () {
+                            $("#gecici").fadeOut("slow")
+                        }, 5000)
+                    }
+                },
+                error: function () {
+                }
+            })
+
+        }
+    }
+    function arsaekle() {
+        var deger = $("#arsaEkleInput").val()
+        if (deger != "") {
+            $.ajax({
+                method: 'POST',
+                url: '/Admin/arsaTuruEkle?arsTur=' + deger,
+                success: function (sonuc) {
+                    if (sonuc) {
+                        $("#arsaTablo").append("<tr><td>@i</td><td>"+deger+"</td></tr>")
+                    }
+                    else {
+                        $("#konutTablo").append(
+                            "<tr id='gecici'><td>*</td><td style='color:red'>'Ekleme başarısız'</td></tr>"
+                            );
+                        setTimeout(function () {
+                            $("#gecici").fadeOut("slow")
+                        }, 5000)
+                    }
+                },
+                error: function () {
+                }
+            })
+
+        }
+    }
+
+</script>

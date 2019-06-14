@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Ilanlarim";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<link href="~/Content/Bootstrap/css/bootstrap.select.min.css" rel="stylesheet" />
+
+<div style="position:absolute;">
+    <img style="width:100%; height:540px" src="~/Images/ilanArkaPlan.jpg" />
+</div>
+<section class="content">
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-10 col-md-offset-1" style="margin-top:12%">
+            <h2 style="text-align:center; color:white; margin-bottom:20px; background-color:rgba(20,200,200,0.5)">Sen o evi hayal et, gerisi UltraEMLAK</h2>
+            <div class="box" style="border-top:none; border-radius:0; padding:20px; background-color:rgba(0, 26, 42, 0.84); ">
+                <div class="box-body no-padding" style="font-size:0">
+                    <form action="/User/IlanSorgula" method="post">
+                        
+
+                        <div class="btn-group">
+                            <select class="selectpicker" id="ilanTuru" name="ilanTuru" style="font-size:15px;" data-width="auto">
+                                <option value="1" selected>Konut</option>
+                                <option value="2">İşyeri</option>
+                                <option value="3">Arsa</option>
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin-left:10px">
+                            <input class="form-control" id="ozelarama" name="ozelarama" type="text" placeholder="Örnek: Satılık daire" style="font-size:15px; min-width:250px; border-radius:3px">
+                        </div>
+
+                        <div class="btn-group" style="margin-left:10px">
+                            <select class="selectpicker" id="fiyat" name="fiyat" title="Fiyat (₺)" multiple data-width="auto">
+                                <optgroup label="Minimum" data-max-options="1">
+                                    <option value="min-500">500 ₺</option>
+                                    <option value="min-1000">1000 ₺</option>
+                                    <option value="min-5000">5000 ₺</option>
+                                    <option value="min-10000">10000 ₺</option>
+                                    <option value="min-50000">50000 ₺</option>
+                                    <option value="min-100000">100000 ₺</option>
+                                    <option value="min-250000">250000 ₺</option>
+                                    <option value="min-500000">500000 ₺</option>
+                                </optgroup>
+                                <optgroup label="Maximum" data-max-options="1">
+                                    <option value="max-500">500 ₺</option>
+                                    <option value="max-1000">1000 ₺</option>
+                                    <option value="max-5000">5000 ₺</option>
+                                    <option value="max-10000">10000 ₺</option>
+                                    <option value="max-50000">50000 ₺</option>
+                                    <option value="max-100000">100000 ₺</option>
+                                    <option value="max-250000">250000 ₺</option>
+                                    <option value="max-500000">500000 ₺</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="btn-group" style="margin-left:10px">
+                            <select class="selectpicker" id="metrekare" name="metrekare" title="Metrekare (m²)" multiple data-width="auto">
+                                <optgroup label="Minimum" data-max-options="1">
+                                    <option value="min-50">50 m²</option>
+                                    <option value="min-75">75 m²</option>
+                                    <option value="min-100">100 m²</option>
+                                    <option value="min-150">150 m²</option>
+                                    <option value="min-250">250 m²</option>
+                                    <option value="min-500">500 m²</option>
+                                    <option value="min-1000">1000 m²</option>
+                                    <option value="min-5000">5000 m²</option>
+                                    <option value="min-10000">10000 m²</option>
+                                    <option value="min-100000">100000 m²</option>
+                                    <option value="min-500000">500000 m²</option>
+                                    <option value="min-1000000">1000000 m²</option>
+                                </optgroup>
+                                <optgroup label="Maximum" data-max-options="1">
+                                    <option value="max-50">50 m²</option>
+                                    <option value="max-75">75 m²</option>
+                                    <option value="max-100">100 m²</option>
+                                    <option value="max-150">150 m²</option>
+                                    <option value="max-250">250 m²</option>
+                                    <option value="max-500">500 m²</option>
+                                    <option value="max-1000">1000 m²</option>
+                                    <option value="max-5000">5000 m²</option>
+                                    <option value="max-10000">10000 m²</option>
+                                    <option value="max-100000">100000 m²</option>
+                                    <option value="max-500000">500000 m²</option>
+                                    <option value="max-1000000">1000000 m²</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin-left:10px; float:right">
+                            <button type="submit" class="btn btn-default pull-right fa fa-search" style="min-width:96px; color:white; font-size:20px;border-radius: 34px; background-color:rgba(193, 0, 0, 0.75)"></button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Content/Bootstrap/js/bootstrap.select.min.js"></script>
+

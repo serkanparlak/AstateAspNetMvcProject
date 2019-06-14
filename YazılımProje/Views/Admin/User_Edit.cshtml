@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "User_Edit";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model YazılımProje.Models.Kullanici
+
+
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Kullanıcı Düzenle</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/Admin/Index/">Admin</a></li>
+            <li><a href="/Admin/Users/">Kullanıcılar</a></li>
+            <li class="active">Düzenle</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-12">   
+        <div class="white-box">
+            <form class="form-horizontal form-material" method="post" enctype="multipart/form-data" action="/Admin/User_Update/@Model.KullaniciId">
+                <div class="form-group">
+                    <label class="col-md-12">Ad Soyad</label>
+                    <div class="col-md-12">
+                        <input type="text" placeholder="Name and Surname" class="form-control form-control-line" name="AdSoyad" value="@Model.AdSoyad" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="example-email" class="col-md-12">Email</label>
+                    <div class="col-md-12">
+                        <input type="email" placeholder="example@admin.com" class="form-control form-control-line" name="Email" id="Email" value="@Model.Email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Şifre</label>
+                    <div class="col-md-12">
+                        <input type="text" name="Sifre" value="@Model.Sifre" placeholder="*****" class="form-control form-control-line" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Telefon No</label>
+                    <div class="col-md-12">
+                        <input type="number" placeholder="123 456 7890" name="Telefon" class="form-control form-control-line" value="@Model.Telefon" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-12">Şehir</label>
+                    <div class="col-sm-12">
+                        <select class="form-control form-control-line" id="il" name="il" onchange="IlceGetir()" required>
+                            <option id="0" selected>Seçiniz</option>
+                            @foreach (var iller in ViewBag.iller)
+                            {
+                                if (iller.ilId != Model.Il)
+                                {
+                                    <option value="@iller.ilId">@iller.sehir</option>
+                                }
+                                else
+                                {
+                                    <option value="@iller.ilId" selected>@iller.sehir</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-12">İlçe</label>
+                    <div class="col-sm-12">
+                        <select class="form-control form-control-line" id="ilce" name="ilce" required>
+                            <option id="0" selected>Seçiniz</option>
+                            @foreach (var ilceler in ViewBag.ilceler)
+                            {
+                                if (ilceler.ilceId != Model.Ilce)
+                                {
+                                    <option value="@ilceler.ilceId">@ilceler.ilce</option>
+                                }
+                                else
+                                {
+                                    <option value="@ilceler.ilceId" selected>@ilceler.ilce</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-12">Mahalle-Köy</label>
+                    <div class="col-md-12">
+                        <input type="text" placeholder="Açık adres" name="Adres" class="form-control form-control-line" value="@Model.Adres" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function IlceGetir() {
+        var ilId = $("#il").val();
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: "/Admin/IlceGetir/" + ilId,
+            success: function (responseData) {
+                if (responseData != null) {
+                    $('#ilce').find('option').remove().end();
+                    $('#ilce').append($('<option></option>').val('0').html('Seçiniz'));
+                    $.each(responseData, function (index, item) {
+                        $('#ilce').append($('<option></option>').val(item['ilceId']).html(item['ilce']));
+                    });
+                }
+            }
+        });
+    }
+</script>

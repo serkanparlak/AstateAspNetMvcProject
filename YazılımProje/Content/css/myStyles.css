@@ -1,0 +1,78 @@
+﻿.box {
+    background: none;
+    box-shadow: none;
+}
+
+.lefside {
+    float: left;
+    width: 46%;
+}
+
+.rightside {
+    float: right;
+    width: 46%;
+}
+
+.adres_iletisim {
+    width: 100%;
+}
+
+.element {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    display: table;
+}
+
+.element2 {
+    border-top: 1px solid gray;
+    width: 100%;
+    margin-top: 20px;
+    clear: both;
+}
+
+.bolum {
+    width: 50%;
+    font-size: 14px;
+    display: table-cell;
+    line-height: 35px;
+    white-space: nowrap;
+}
+
+.solbolum {
+    float: left;
+    font-weight: 400;
+}
+
+.sagbolum {
+    float: left;
+    font-weight: 600;
+    text-align: right;
+}
+
+.sagbolumaciklama {
+    text-align: justify;
+    width: 46%;
+    white-space: normal;
+    line-height: 20px;
+    margin-top: 5px;
+    font-weight: 400;
+    float: right;
+}
+
+.sagbolumadres {
+    font-weight: 600;
+    white-space: normal;
+    text-align: justify;
+    width: 70%;
+    line-height: 20px;
+    margin-top: 10px;
+}
+
+.ust_baslik_h1 {
+    background: rgba(204, 255, 0, 0.53);
+    color: white;
+    margin-left: 300px;
+    padding-left: 130px;
+    margin-right: 442px;
+    padding-bottom: 20px;
+}

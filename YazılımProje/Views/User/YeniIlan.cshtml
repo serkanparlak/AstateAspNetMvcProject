@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<section class="content-header">
+    <h1>YENİ GAYRİMENKUL EKLE</h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-tag"></i> Kategori Belirleme</h3>
+                </div>
+                <div class="box-body">
+                    <div class="alert alert-info alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-info"></i> Bilgi!</h4>
+                        Gireceğiniz gayrimenkul ilanının hangi kategoriye ait olduğunu belirleyerek işlemlere devam edebilirsiniz.
+                    </div>
+                    <div class="box box-solid">
+                        <div class="box-body">
+                            <div class="col-md-offset-1 text-green">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                        Konut
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                        İşyeri
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                        Arsa
+                                    </label>
+                                </div>
+                                <br />
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-block btn-primary btn-flat" onclick="EmlakTuruKontrol()">Seç ve Devam Et »</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function EmlakTuruKontrol() {
+        if (optionsRadios1.checked) {
+            location.href = "/User/YeniIlanKonut/";
+        }
+        else if (optionsRadios2.checked) {
+            location.href = "/User/YeniIlanIsyeri/";
+        }
+        else {
+            location.href = "/User/YeniIlanArsa/";
+        }
+    }
+</script>

@@ -1,0 +1,360 @@
+﻿@{
+    ViewBag.Title = "KonutDuzenle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model YazılımProje.Models.Konut
+
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Konut Detay</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/Admin/Index/">Admin</a></li>
+            <li><a href="/Admin/KonutListele/">Konutlar</a></li>
+            <li class="active">Konut Düzenleme</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- Main content -->
+
+
+<form class="form-horizontal form-material">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h3 class="box-title">Genel Özellikleri</h3>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">İlan Türü</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="kategori" name="kategori" onchange="DepozitoKontrol()">
+                            <option value="0">Seçiniz</option>
+                            @if (Model.kategori == 1)
+                            {
+                                <option selected value="1">Satılık</option>
+                                <option value="2">Kiralık</option>
+                                <option value="3">Günlük Kiralık</option>
+                            }
+                            else if (Model.kategori == 2)
+                            {
+                                <option value="1">Satılık</option>
+                                <option selected value="2">Kiralık</option>
+                                <option value="3">Günlük Kiralık</option>
+                            }
+                            else
+                            {
+                                <option value="1">Satılık</option>
+                                <option value="2">Kiralık</option>
+                                <option selected value="3">Günlük Kiralık</option>
+                            }
+
+                        </select>
+                    </div>
+                    <small style="line-height:32px">Konut</small>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Konut Türü</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="konutTuru" name="konutTuru">
+                            <option value="0">Seçiniz</option>
+                            @foreach (var emTur in ViewBag.konutTuru)
+                            {
+                                if (emTur.konutTuruId != Model.konutTuru)
+                                {
+                                    <option value="@emTur.konutTuruId">@emTur.konutTuruAdi</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@emTur.konutTuruId">@emTur.konutTuruAdi</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">İlan Başlığı</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="baslik" name="baslik" value="@Model.baslik">
+                    </div>
+                    <small style="line-height:32px">Örnek: Etiler'de satılık 3+1 lüks daire</small>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Fiyatı</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="fiyat" name="fiyat" value="@Model.fiyat">
+                    </div>
+                    <small style="line-height:32px">Örnek; 150000 TL - Noktalama işareti kullanmayınız.</small>
+                </div>
+
+                <div class="form-group" id="depozitoKutu">
+                    <label class="col-sm-2 control-label">Depozito</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="depozito" name="depozito" value="@Model.depozito">
+                    </div>
+                    <small style="line-height:32px">Örnek; 500 TL - Noktalama işareti kullanmayınız.</small>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h3 class="box-title">Konum Bilgileri</h3>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">İl</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="il" name="il" onchange="IlceGetir()">
+                            <option value="0">Seçiniz</option>
+                            @foreach (var il in ViewBag.Iller)
+                            {
+                                if (il.ilId != Model.il)
+                                {
+                                    <option value="@il.ilId">@il.sehir</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@il.ilId">@il.sehir</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">İlçe</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="ilce" name="ilce">
+                            <option value="0">Seçiniz</option>
+                            @foreach (var ilce in ViewBag.Ilceler)
+                            {
+                                if (ilce.ilceId != Model.ilce)
+                                {
+                                    <option value="@ilce.ilceId">@ilce.ilce</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@ilce.ilceId">@ilce.ilce</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Açık Adres</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="adres" name="adres" rows="3" placeholder="Ayrıntılı adres giriniz..">@Model.adres</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h3 class="box-title">Konum Bilgileri</h3>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Alan m<sup>2</sup></label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="metrekare" name="metrekare" value="@Model.metrekare" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Oda Sayısı</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="odaSayisi" name="odaSayisi">
+                                <option value="0">Seçiniz</option>
+                                @foreach (var oSayi in ViewBag.odaSayi)
+                                {
+                                    if (oSayi.odaSayisiId != Model.odaSayisi)
+                                    {
+                                        <option value="@oSayi.odaSayisiId">@oSayi.odaSayisiAdi</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected value="@oSayi.odaSayisiId">@oSayi.odaSayisiAdi</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Isıtma Türü</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="isitmaTuru" name="isitmaTuru">
+                                <option value="0">Seçiniz</option>
+                                @foreach (var iTuru in ViewBag.isitTuru)
+                                {
+                                    if (iTuru.isitmaTuruId != Model.isitmaTuru)
+                                    {
+                                        <option value="@iTuru.isitmaTuruId">@iTuru.isitmaTuruAdi</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected value="@iTuru.isitmaTuruId">@iTuru.isitmaTuruAdi</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Kat Sayısı</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="katSayisi" name="katSayisi" value="@Model.katSayisi" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Bulunduğu Kat</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="bulunduguKat" name="bulunduguKat">
+                                <option value="0">Seçiniz</option>
+                                @foreach (var bKati in ViewBag.bulKat)
+                                {
+                                    if (bKati.bulunduguKatId != Model.bulunduguKat)
+                                    {
+                                        <option value="@bKati.bulunduguKatId">@bKati.bulunduguKatAdi</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected value="@bKati.bulunduguKatId">@bKati.bulunduguKatAdi</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Bina Yaşı</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="yasi" name="yasi" value="@Model.yasi" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Eşya Durumu</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="esyaDurumu" name="esyaDurumu">
+                                <option value="0">Seçiniz</option>
+                                @if ((bool)Model.esyaDurumu)
+                                {
+                                    <option selected value="1">Eşyalı</option>
+                                    <option value="2">Eşyasız</option>
+                                }
+                                else
+                                {
+                                    <option value="1">Eşyalı</option>
+                                    <option selected value="2">Eşyasız</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Yayınlanma Şekli</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="aktif" name="aktif">
+                                <option value="0">Seçiniz</option>
+                                @if ((bool)Model.aktif)
+                                {
+                                    <option selected value="1">Aktif</option>
+                                    <option value="2">Pasif</option>
+                                }
+                                else
+                                {
+                                    <option value="1">Aktif</option>
+                                    <option selected value="2">Pasif</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Açıklama</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="aciklama" name="aciklama" rows="4" placeholder="Açıklama giriniz..">@Model.aciklama</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <input type="text" name="id" value="@Model.KonutId" hidden />
+                    <button type="button" class="btn btn-primary btn-lg" onclick="VeriKontrol()"><i class="fa fa-home"></i> Güncelle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <h3 class="box-title">Resimler</h3>
+            <div class="user-bg">
+                <div class="overlay-box" style="background:none">
+                    <div class="user-content">
+                        @foreach (var item in ViewBag.resimler)
+                        {
+                            <img src="~/Images/@item.ResimAdresi" style="height:80px; width:135.22px; border-radius:4px;" alt="img">
+                        }
+                    </div>
+                    <div>
+                        @foreach (var item in ViewBag.resimler)
+                        {
+                            <a href="javascript:void(0)" class="btn btn-danger btn-sm" style="margin:0 50px">Sil</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------------------------------------------------------->
+
+<script>
+    function DepozitoKontrol() {
+        if ($("#kategori").val() == 2) {
+            $("#depozitoKutu").slideDown("fast")
+        }
+        else {
+            $("#depozitoKutu").fadeOut("fast")
+        }
+    }
+    function IlceGetir() {
+        var ilId = $("#il").val();
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: "/Admin/IlceGetir/" + ilId,
+            success: function (responseData) {
+                if (responseData != null) {
+                    $('#ilce').find('option').remove().end();
+                    $('#ilce').append($('<option></option>').val('0').html('Seçiniz'));
+                    $.each(responseData, function (index, item) {
+                        $('#ilce').append($('<option></option>').val(item['ilceId']).html(item['ilce']));
+                    });
+                }
+            }
+        });
+    }
+    function VeriKontrol() { //Bu kısmı hallet
+        var Veriler = $("form").serializeArray();
+        $.ajax({
+            url: "/Admin/KonutDuzenle",
+            data: Veriler,
+            method: "POST",
+            success: function (snc) {
+                if (snc.IsSuccess) {
+                    alert(snc.Mesaj);
+                    location.href = "/Admin/KonutListele";
+                }
+                else {
+                    $("#" + snc.Mesaj).focus()
+                }
+            }
+        })
+    }
+</script>
+

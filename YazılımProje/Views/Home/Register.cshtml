@@ -1,0 +1,130 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Proje | Register</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap -->
+    <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Content/css/font-awesame.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <a href=""><b>Ultra</b>EMLAK</a>
+        </div>
+        <div class="register-box-body">
+            <p class="login-box-msg">Yeni hesap olustur</p>
+            <div class="alert alert-success" id="onay" hidden>Kayıt Basarılı<b><span id="yonver"></span></b></div>
+            <div class="alert alert-danger" id="mesaj" hidden>Bildiri</div>
+            <form action="" id="register" method="post" onsubmit="return false">
+                <div class="form-group has-feedback">
+                    <input name="AdSoyad" type="text" class="form-control" placeholder="Ad Soyad">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input id="Email" name="Email" type="text" class="form-control" placeholder="E-mail">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <input id="Sifre" name="Sifre" type="password" class="form-control" placeholder="Sifre">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input id="SifreTekrar" name="SifreTekrar" type="password" class="form-control" placeholder="Sifre Tekrar">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input name="Telefon" type="text" class="form-control" placeholder="Telefon">
+                    <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" onclick="KayitKontrol()">Kaydol</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            <p class="headline"></p>
+            <a href="/Home/Login/" class="text-center">Zaten bir hesabım var</a>
+        </div>
+        <!-- /.form-box -->
+    </div>
+    <!-- /.register-box -->
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Content/Bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        function KayitKontrol() {
+            var sifre = $("#Sifre").val();
+            var sifreTekrar = $("#SifreTekrar").val();
+            var form = $("#register").serializeArray();
+            var bosluk = false;
+            $.each(form,function(i,item){
+                if (item.value == "" | sifreTekrar == "") {
+                    $("#mesaj").slideDown("fast").html("Boş alanları doldurunuz!");
+                    setTimeout(function () {
+                        $("#mesaj").slideUp("fast")
+                    }, 5000)
+                    bosluk = true;
+                    return;
+                }
+            })
+            if (!bosluk) {
+                if (sifre != sifreTekrar) {
+                    $("#mesaj").slideDown("fast").html("Sifreler uyusmuyor!");
+                    setTimeout(function () {
+                        $("#mesaj").slideUp("fast")
+                    }, 5000)
+                }
+                else {
+                    $.ajax({
+                        method: 'POST',
+                        url: "/Home/RegisterKontrol/",
+                        data: form,
+                        success: function (sonuc) {
+                            if (sonuc.Mesaj != null) {
+                                $("#mesaj").slideDown("fast").html(sonuc.Mesaj);
+                                $("#Email").css("border-color", "red");
+                                setTimeout(function () {
+                                    $("#mesaj").slideUp("fast")
+                                    $("#Email").css("border-color", "#d2d6de");
+                                },5000)
+                            }
+                            else if (sonuc) {
+                                $("#onay").fadeIn("fast");
+                                setTimeout(function () {
+                                    $("#yonver").html(" - Yönlendiriliyorsunuz...")
+                                }, 2000)
+                                setTimeout(function () {
+                                    location.href = "/Home/Login"
+                                }, 5000)
+                            }
+                            else {
+                                $("#mesaj").slideDown("fast").html("Kayıt esnasında bir hata oluştu");
+                                setTimeout(function () {
+                                    $("#mesaj").slideUp("fast")
+                                }, 5000)
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    </script>
+</body>
+</html>

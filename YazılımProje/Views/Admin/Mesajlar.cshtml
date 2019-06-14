@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Mesajlar";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    
+}
+@model IEnumerable<YazılımProje.Models.Mesajlar>
+
+@helper TarihGetir(DateTime tarih)
+{
+    Write(tarih.ToLongDateString() + " " + tarih.ToShortTimeString());
+}
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4>Mesajlar</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/Admin/Index/">Admin</a></li>
+            <li class="active">Mesajlar</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <!-- .col -->
+    <div class="col-lg-6">
+        <div class="white-box" style="padding-top: 10px;">
+            <h3 class="box-title">Gelenler</h3>
+            <div class="comment-center p-t-10">
+                @foreach (var item in Model)
+                {
+                    <div class="comment-body b-none">
+                        <div class="mail-contnet">
+                            <h5>@item.Kullanici1.AdSoyad</h5><span class="time">@TarihGetir((DateTime)item.tarih)</span>
+                            <br><span class="mail-desc"><b>Konu</b>&nbsp; @item.konu</span>
+                            <span class="mail-desc"><b>Mesaj</b> @item.mesaj</span>
+                            <a href="/Admin/MesajYaz/@item.gönderenID" class="btn btn btn-rounded btn-default btn-outline m-r-5"><i class="ti-check text-success m-r-5"></i>Cevap yaz &nbsp;</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <a href="/Admin/MesajYaz/0" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light" style="margin-top: 8px; margin-right: 8px; color: #f33155; background-color:white">Mesaj Oluştur</a>
+        <div class="white-box" style="padding-top: 10px;">
+            <h3 class="box-title">Gönderilenler</h3>
+            <div class="comment-center p-t-10">
+                @foreach (var item in ViewBag.gidenmesajlar)
+                {
+                    <div class="comment-body b-none">
+                        <div class="mail-contnet">
+                            <h5>@item.Kullanici.AdSoyad</h5><span class="time">@TarihGetir((DateTime)item.tarih)</span>
+                            <br><span class="mail-desc"><b>Konu</b>&nbsp; @item.konu</span>
+                            <span class="mail-desc"><b>Mesaj</b> @item.mesaj</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+    <!-- /.col -->
+</div>
+

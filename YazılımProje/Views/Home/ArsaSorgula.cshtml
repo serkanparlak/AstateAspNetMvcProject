@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "ArsaSorgula";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+@model IEnumerable<YazılımProje.Models.Arsa>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            @foreach (var item in Model)
+            {
+                <div class="box box-solid" style="border:1px solid #d8d8d8; border-radius:0; margin-bottom:-1px;">
+                    <div class="box-body clearfix">
+                        <div class="col-md-4" style="padding-left:0">
+                            <img src="~/Images/@item.kucukResim" style="width:200px; border-radius:3px" />
+                        </div>
+                        <div class="col-md-8" style="margin:auto auto auto auto">
+                            <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                <h4 class="text-bold" style="margin:0">@item.baslik</h4>
+                            </div>
+                            <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                <small style="margin:0">@item.iller.sehir &nbsp;/&nbsp;  @item.ilceler.ilce &nbsp; / &nbsp; @item.adres</small>
+                            </div>
+                            <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                <p class="fa fa-map-o" style="margin:0"> @item.metrekare m²</p>&nbsp;&nbsp;&nbsp;
+
+                            </div>
+                            <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                <h3 style="margin:0; float:left">@item.fiyat ₺</h3>
+                                <small style="line-height: 26px;float:right;margin:0;">@(((DateTime)item.ilanTarihi).ToShortDateString())</small>
+                            </div>
+                        </div>
+                        <a href="/User/IsyeriGoster/@item.ArsaId" class="btn btn-facebook btn-sm" style="position:absolute;margin-left: -80px;margin-top: 35px;border-radius:0;border-color:white;font-size:14px;">Detaya Git</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

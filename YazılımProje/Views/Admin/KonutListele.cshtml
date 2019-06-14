@@ -1,0 +1,253 @@
+﻿@{
+    ViewBag.Title = "KonutListele";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model IEnumerable<YazılımProje.Models.Konut>
+
+@helper TarihGoster(DateTime tarih)
+{
+    Write(tarih.ToShortDateString());
+}
+@helper bulunduguKatGetir(int katNo, string katAdi)
+{
+    if (katNo < 7)
+    {
+        Write(katAdi);
+    }
+    else
+    {
+        Write(katAdi + ". Kat");
+    }
+}
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Konut Yönetim</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/Admin/Index/">Admin</a></li>
+            <li class="active">Konutlar</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <form class="form-horizontal form-material" method="post" action="" enctype="multipart/form-data">
+                <div class="form-group" style="margin-bottom:0">
+                    <div class="col-md-2">
+                        <label>İlan Sahibi</label>
+                        <select class="form-control form-control-line" id="ilansahibi" name="ilansahibi">
+                            <option value="0">Seçiniz</option>
+                            @foreach (var item in ViewBag.Kullanici)
+                            {
+                                if (ViewBag.SorguDongu.ilansahibi != item.KullaniciId)
+                                {
+                                    <option value="@item.KullaniciId">@item.AdSoyad</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@item.KullaniciId">@item.AdSoyad</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <label>Türü</label>
+                        <select class="form-control form-control-line" name="ilanTuru" id="ilanTuru">
+                            <option value="0">Seçiniz</option>
+                            @foreach (var item in ViewBag.KonutTuru)
+                            {
+                                if (ViewBag.SorguDongu.ilanTuru != item.konutTuruId)
+                                {
+                                    <option value="@item.konutTuruId">@item.konutTuruAdi</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@item.konutTuruId">@item.konutTuruAdi</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Isıtma Türü</label>
+                        <select class="form-control form-control-line" id="isitmaturu" name="isitmaturu">
+                            <option value="0">Seçiniz</option>
+                            @foreach (var item in ViewBag.isitmaTuru)
+                            {
+                                if (ViewBag.SorguDongu.isitmaturu == null)
+                                {
+                                    <option value="@item.isitmaTuruId">@item.isitmaTuruAdi</option>
+                                }
+                                else
+                                {
+                                    if (ViewBag.SorguDongu.isitmaturu[0] != item.isitmaTuruId)
+                                    {
+                                        <option value="@item.isitmaTuruId">@item.isitmaTuruAdi</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected value="@item.isitmaTuruId">@item.isitmaTuruAdi</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        <label>Oda</label>
+                        <select class="form-control form-control-line" name="odasayisi" id="odasayisi">
+                            <option value="0">Seçiniz</option>
+                            @foreach (var item in ViewBag.odasayisi)
+                            {
+                                if (ViewBag.SorguDongu.odasayisi == null)
+                                {
+                                    <option value="@item.odaSayisiId">@item.odaSayisiAdi</option>
+                                }
+                                else
+                                {
+                                    if (ViewBag.SorguDongu.odasayisi[0] != item.odaSayisiId)
+                                    {
+                                        <option value="@item.odaSayisiId">@item.odaSayisiAdi</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected value="@item.odaSayisiId">@item.odaSayisiAdi</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Şehir</label>
+                        <select class="form-control form-control-line" id="il" name="il" onchange="IlceGetir()">
+                            <option value="0">Seçiniz</option>
+                            @foreach (var item in ViewBag.il)
+                            {
+                                if (ViewBag.SorguDongu.il != item.ilId)
+                                {
+                                    <option value="@item.ilId">@item.sehir</option>
+                                }
+                                else
+                                {
+                                    <option selected value="@item.ilId">@item.sehir</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <label>İlçe</label>
+                        <select class="form-control form-control-line" name="ilce" id="ilce">
+                            @if (ViewBag.SorguDongu.il == 0)
+                            {
+                                <option value="0">İl seçmedin</option>
+                            }
+                            else
+                            {
+                                <option value="0">Seçin</option>
+                                foreach (var item in ViewBag.ilce)
+                                {
+                                    if (ViewBag.SorguDongu.ilce != item.ilceId)
+                                    {
+                                        <option value="@item.ilceId">@item.ilce</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected value="@item.ilceId">@item.ilce</option>
+                                    }
+                                }
+                            }
+                            }
+                        </select>
+                    </div>
+
+                    <input type="text" value="asd" name="metrekare" hidden />
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Bul</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@if (IsPost)
+{
+    if (ViewBag.KonutSayi > 0)
+    {
+    <!-- /row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Resim</th>
+                                    <th>Başlık</th>
+                                    <th>Fiyat</th>
+                                    <th>Alan</th>
+                                    <th>Bul. Kat</th>
+                                    <th>İlan Tarihi</th>
+                                    <th>İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var knt in Model)
+                                {
+                                    <tr>
+                                        <td><img src="~/Images/KucukResimler/@knt.kucukResim" style="height:50px; width:85px" /> </td>
+                                        <td style="padding: 30px 8px;">@knt.baslik</td>
+                                        <td style="padding: 30px 8px;">@knt.fiyat TL</td>
+                                        <td style="padding: 30px 8px;">@knt.metrekare m<sup>2</sup></td>
+                                        <td style="padding: 30px 8px;">@bulunduguKatGetir((int)knt.bulunduguKat, (string)knt.bulunduguKat1.bulunduguKatAdi)</td>
+                                        <td style="padding: 30px 8px;">@TarihGoster((DateTime)knt.ilanTarihi)</td>
+                                        <td style="padding: 30px 8px;">
+                                            <a href="/Admin/KonutDuzenle/@knt.KonutId" class="btn btn-info btn-xs">Detay</a>
+                                            <a href="/Admin/--/@knt.KonutId" class="btn btn-danger btn-xs">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="white-box">
+                    <h3 class="box-title" style="text-align:center">Üzgünüz aradığınız kriterde konut bulunamadı.</h3>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+
+<script>
+    function IlceGetir() {
+        var ilId = $("#il").val();
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: "/Admin/IlceGetir/" + ilId,
+            success: function (responseData) {
+                if (responseData != null) {
+                    $('#ilce').find('option').remove().end();
+                    $('#ilce').append($('<option></option>').val('0').html('Seçiniz'));
+                    $.each(responseData, function (index, item) {
+                        $('#ilce').append($('<option></option>').val(item['ilceId']).html(item['ilce']));
+                    });
+                }
+            }
+        });
+    }
+</script>
+

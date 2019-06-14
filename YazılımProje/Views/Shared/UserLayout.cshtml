@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+    int kulId = Convert.ToInt32(Session["Kl"]) % 6;
+    string avatar = "avatar"+ kulId +".png";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/dist/skins/skin-blue.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="~/User/Index/" class="logo">
+                <span class="logo-mini"><b>U</b>E</span>
+                <span class="logo-lg"><b>Ultra</b>EMLAK</span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    
+                </div>
+                
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img class="img-circle" src="~/Content/dist/img/@avatar" />
+                    </div>
+                    <div class="pull-left info">
+                        <p>@Session["kAdi"]</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Çevrimiçi</a>
+                    </div>
+                </div>
+                <ul class="sidebar-menu">
+                    <li class="header">Menu</li>
+                    <li><a href="/User/Index/"><i class="fa fa-th-large"></i> <span>Anasayfa</span></a></li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-home"></i> <span>İlanlar</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/User/YeniIlan/">Yeni İlan Ekle</a></li>
+                            <li><a href="/User/IlanSorgula/0">İlanlarım</a></li>
+                            <li><a href="/User/IlanSorgula/1">İlan Ara</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-sliders"></i> <span>Hesabım</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#">Sifre Değiştir</a></li>
+                            <li><a href="#">Bilgilerimi Değiştir</a></li>
+                            <li><a href="/Home/CikisYap/">Çıkış Yap</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </aside>
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <footer class="main-footer" style="clear:both">
+            <div class="pull-right">
+                <div class="text-center">
+                    <a target="_blank" href="https://www.facebook.com/serkanparlak27"><i class="fa fa-lg fa-facebook"></i></a>
+                    <a target="_blank" href="#"><i class="fa fa-lg fa-twitter"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/serkannprlk/"><i class="fa fa-lg fa-lg fa-instagram"></i></a>
+                    <a target="_blank" href="https://tr.linkedin.com/in/serkan-parlak-439939b4"><i class="fa fa-lg fa-linkedin"></i></a>
+                </div>
+            </div>
+            <strong>Copyright &copy; @DateTime.Now.Year Company.</strong> All right reserved by Serkan Parlak.
+        </footer>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/Bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/dist/js/app.min.js"></script>
+</body>
+</html>

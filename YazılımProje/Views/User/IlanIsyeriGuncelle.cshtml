@@ -1,0 +1,349 @@
+﻿@{
+    ViewBag.Title = "IlanIsyeriGuncelle";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@model YazılımProje.Models.Isyeri
+
+<section class="content-header">
+    <h1>GAYRİMENKUL GUNCELLE<small>&nbsp; Işyeri</small></h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/" method="post" class="form-horizontal" enctype="multipart/form-data">
+                <!-- Genel Özellikler -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title text-bold">1- Genel Özellikleri</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İlan Türü</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="kategori" name="kategori" onchange="DepozitoKontrol()">
+                                    <option value="0">Seçiniz</option>
+                                    @if (Model.kategori == 1)
+                                    {
+                                        <option selected value="1">Satılık</option>
+                                        <option value="2">Kiralık</option>
+                                        <option value="3">Devren</option>
+                                    }
+                                    else if (Model.kategori == 2)
+                                    {
+                                        <option value="1">Satılık</option>
+                                        <option selected value="2">Kiralık</option>
+                                        <option value="3">Devren</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="1">Satılık</option>
+                                        <option value="2">Kiralık</option>
+                                        <option selected value="3">Devren</option>
+                                    }
+                                </select>
+                            </div>
+                            <small style="line-height:32px">Işyeri</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Işyeri Türü</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="konutTuru" name="konutTuru">
+                                    <option value="0">Seçiniz</option>
+                                    @foreach (var emTur in ViewBag.isyeriTuru)
+                                    {
+                                        if (emTur.isyeriTuruId != Model.isyeriTuru)
+                                        {
+                                            <option value="@emTur.isyeriTuruId">@emTur.isyeriTuruAdi</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected value="@emTur.isyeriTuruId">@emTur.isyeriTuruAdi</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İlan Başlığı</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="baslik" name="baslik" value="@Model.baslik">
+                            </div>
+                            <small style="line-height:32px">Örnek: Etiler'de satılık 3+1 lüks daire</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Fiyatı</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="fiyat" name="fiyat" value="@Model.fiyat">
+                            </div>
+                            <small style="line-height:32px">Örnek; 150000 TL - Noktalama işareti kullanmayınız.</small>
+                        </div>
+
+                        <div class="form-group" id="depozitoKutu">
+                            <label class="col-sm-2 control-label">Depozito</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="depozito" name="depozito" value="@Model.depozito">
+                            </div>
+                            <small style="line-height:32px">Örnek; 500 TL - Noktalama işareti kullanmayınız.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konum Bilgileri -->
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title text-bold">2- Konum Bilgileri</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İl</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="il" name="il" onchange="IlceGetir()">
+                                    <option value="0">Seçiniz</option>
+                                    @foreach (var il in ViewBag.Iller)
+                                    {
+                                        if (il.ilId != Model.il)
+                                        {
+                                            <option value="@il.ilId">@il.sehir</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected value="@il.ilId">@il.sehir</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İlçe</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="ilce" name="ilce">
+                                    <option value="0">Seçiniz</option>
+                                    @foreach (var ilce in ViewBag.Ilceler)
+                                    {
+                                        if (ilce.ilceId != Model.ilce)
+                                        {
+                                            <option value="@ilce.ilceId">@ilce.ilce</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected value="@ilce.ilceId">@ilce.ilce</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Açık Adres</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" id="adres" name="adres" rows="3" placeholder="Ayrıntılı adres giriniz..">@Model.adres</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konut Detayları -->
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title text-bold">3- Konut Detayları</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Konut m²</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="metrekare" name="metrekare" value="@Model.metrekare" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Oda Sayısı</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="odaSayisi" name="odaSayisi">
+                                        <option value="0">Seçiniz</option>
+                                        @foreach (var oSayi in ViewBag.odaSayi)
+                                        {
+                                            if (oSayi.odaSayisiId != Model.odaSayisi)
+                                            {
+                                                <option value="@oSayi.odaSayisiId">@oSayi.odaSayisiAdi</option>
+                                            }
+                                            else
+                                            {
+                                                <option selected value="@oSayi.odaSayisiId">@oSayi.odaSayisiAdi</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Isıtma Türü</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="isitmaTuru" name="isitmaTuru">
+                                        <option value="0">Seçiniz</option>
+                                        @foreach (var iTuru in ViewBag.isitTuru)
+                                        {
+                                            if (iTuru.isitmaTuruId != Model.isitmaTuru)
+                                            {
+                                                <option value="@iTuru.isitmaTuruId">@iTuru.isitmaTuruAdi</option>
+                                            }
+                                            else
+                                            {
+                                                <option selected value="@iTuru.isitmaTuruId">@iTuru.isitmaTuruAdi</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Kat Sayısı</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="katSayisi" name="katSayisi" value="@Model.katSayisi" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Bulunduğu Kat</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="bulunduguKat" name="bulunduguKat">
+                                        <option value="0">Seçiniz</option>
+                                        @foreach (var bKati in ViewBag.bulKat)
+                                        {
+                                            if (bKati.bulunduguKatId != Model.bulunduguKat)
+                                            {
+                                                <option value="@bKati.bulunduguKatId">@bKati.bulunduguKatAdi</option>
+                                            }
+                                            else
+                                            {
+                                                <option selected value="@bKati.bulunduguKatId">@bKati.bulunduguKatAdi</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Bina Yaşı</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="yasi" name="yasi" value="@Model.binaYasi" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Eşya Durumu</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="esyaDurumu" name="esyaDurumu">
+                                        <option value="0">Seçiniz</option>
+                                        @if ((bool)Model.esyaDurumu)
+                                        {
+                                            <option selected value="1">Eşyalı</option>
+                                            <option value="2">Eşyasız</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="1">Eşyalı</option>
+                                            <option selected value="2">Eşyasız</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Yayınlanma Şekli</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="aktif" name="aktif">
+                                        <option value="0">Seçiniz</option>
+                                        @if ((bool)Model.aktif)
+                                        {
+                                            <option selected value="1">Aktif</option>
+                                            <option value="2">Pasif</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="1">Aktif</option>
+                                            <option selected value="2">Pasif</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Açıklama</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" id="aciklama" name="aciklama" rows="4" placeholder="Açıklama giriniz..">@Model.aciklama</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konut Detayları -->
+
+                <div class="pull-right">
+                    <button type="button" class="btn btn-success btn-lg" onclick="VeriKontrol()"><i class="fa fa-home"></i> İlan Güncelle</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<!--3333333333333333333333333333333333333333333-->
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+
+<!---------------------------------------------------------------->
+
+<script>
+    function DepozitoKontrol() {
+        if ($("#kategori").val() == 2) {
+            $("#depozitoKutu").slideDown("fast")
+        }
+        else {
+            $("#depozitoKutu").slideUp("fast")
+        }
+    }
+    function IlceGetir() {
+        var ilId = $("#il").val();
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: "/User/IlceGetir/" + ilId,
+            success: function (responseData) {
+                if (responseData != null) {
+                    $('#ilce').find('option').remove().end();
+                    $('#ilce').append($('<option></option>').val('0').html('Seçiniz'));
+                    $.each(responseData, function (index, item) {
+                        $('#ilce').append($('<option></option>').val(item['ilceId']).html(item['ilce']));
+                    });
+                }
+            }
+        });
+    }
+    function VeriKontrol() {
+        var Veriler = $("form").serializeArray();
+        $.ajax({
+            url: "/User/IlanIsyeriGuncelle",
+            data: Veriler,
+            method: "POST",
+            success: function (snc) {
+                if (snc.IsSuccess) {
+                    alert(snc.Mesaj + "\nAnasayfaya yönlendirileceksiniz.");
+                    location.href = "/User/Index";
+                }
+                else {
+                    $("#" + snc.Mesaj).focus()
+                    $("#" + snc.Mesaj).css("border-color", "red")
+                    setTimeout(function () {
+                        $("#" + snc.Mesaj).css("border-color", "#d2d6de")
+                    }, 5000)
+                }
+            }
+        })
+    }
+</script>

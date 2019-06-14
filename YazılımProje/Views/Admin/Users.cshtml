@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    int i = 1;
+}
+@model IEnumerable<YazılımProje.Models.Kullanici>
+
+@helper TarihGoster(DateTime tarih) { 
+    Write(tarih.ToShortDateString());
+    }
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Yönetim Kullanıcı</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/Admin/Index/">Admin</a></li>
+            <li class="active">Kullanıcılar</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /row -->
+<div class="row">
+    <div class="col-sm-12">
+        <div class="white-box">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad Soyad</th>
+                            <th>Şifre</th>
+                            <th>E-mail</th>
+                            <th>Telefon</th>
+                            <th>Kayıt Tarihi</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var usr in Model)
+                        {
+                            <tr>
+                                <td>@i </td>
+                                <td>@usr.AdSoyad</td>
+                                <td>@usr.Sifre</td>
+                                <td>@usr.Email</td>
+                                <td>@usr.Telefon</td>
+                                <td>@TarihGoster((DateTime)usr.KayitTarihi)</td>
+                                <td><a href="/Admin/User_Edit/@usr.KullaniciId" class="btn btn-info btn-xs">Göster</a>
+                                <a href="/Admin/User_Delete/@usr.KullaniciId" class="btn btn-danger btn-xs">Sil</a></td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,174 @@
+﻿@{
+    ViewBag.Title = "ListeKonutSorgu";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+    int kullaniciId = Convert.ToInt32(Session["Kl"]);
+
+}
+@model IEnumerable<YazılımProje.Models.Konut>
+@helper bulunduguKatGetir(int katNo, string katAdi)
+{
+    if (katNo < 7)
+    {
+        Write(katAdi);
+    }
+    else
+    {
+        Write(katAdi + ". Kat");
+    }
+}
+<link href="~/Content/Bootstrap/css/bootstrap.select.min.css" rel="stylesheet" />
+<section class="content-header">
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+            <div class="box" style="border-top:none; border-radius:3px; padding:20px; background-color:white; ">
+                <div class="box-body no-padding">
+                    <form action="/User/IlanSorgula" method="post">
+                        <input type="text" name="ilanTuru" value="1" hidden />
+                        <div class="btn-group">
+                            <select class="selectpicker" id="kategori" name="kategori" data-width="auto">
+                                <option value="0">Tümü</option>
+                                <option value="1">Satılık</option>
+                                <option value="2">Kiralık</option>
+                                <option value="3">Günlük Kira</option>
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin-left:10px">
+                            <select class="selectpicker" id="konutturu" name="konutturu" title="Konut Türü" multiple data-width="auto" data-max-options="3">
+                                @foreach (var item in ViewBag.KonutTuru)
+                                {
+                                    <option value="@item.konutTuruId">@item.konutTuruAdi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin-left:10px">
+                            <select class="selectpicker" id="il" name="il" title="Şehir" data-live-search="true" data-width="auto">
+                                @foreach (var item in ViewBag.il)
+                                {
+                                    <option value="@item.ilId">@item.sehir</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin-left:10px">
+                            <select class="selectpicker" data-width="auto" id="odasayisi" name="odasayisi" title="Oda Sayısı" multiple data-max-options="3">
+                                @foreach (var item in ViewBag.OdaSayisi)
+                                {
+                                    <option value="@item.odaSayisiId">@item.odaSayisiAdi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin-left:10px">
+                            <select class="selectpicker" id="fiyat" name="fiyat" title="Fiyat (₺)" multiple data-width="auto">
+                                <optgroup label="Minimum" data-max-options="1">
+                                    <option value="min-500">500 ₺</option>
+                                    <option value="min-1000">1000 ₺</option>
+                                    <option value="min-5000">5000 ₺</option>
+                                    <option value="min-10000">10000 ₺</option>
+                                    <option value="min-50000">50000 ₺</option>
+                                    <option value="min-100000">100000 ₺</option>
+                                    <option value="min-250000">250000 ₺</option>
+                                    <option value="min-500000">500000 ₺</option>
+                                </optgroup>
+                                <optgroup label="Maximum" data-max-options="1">
+                                    <option value="max-500">500 ₺</option>
+                                    <option value="max-1000">1000 ₺</option>
+                                    <option value="max-5000">5000 ₺</option>
+                                    <option value="max-10000">10000 ₺</option>
+                                    <option value="max-50000">50000 ₺</option>
+                                    <option value="max-100000">100000 ₺</option>
+                                    <option value="max-250000">250000 ₺</option>
+                                    <option value="max-500000">500000 ₺</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="btn-group" style="margin-left:10px">
+                            <select class="selectpicker" id="metrekare" name="metrekare" title="Metrekare (m²)" multiple data-width="auto">
+                                <optgroup label="Minimum" data-max-options="1">
+                                    <option value="min-50">50 m²</option>
+                                    <option value="min-75">75 m²</option>
+                                    <option value="min-100">100 m²</option>
+                                    <option value="min-150">150 m²</option>
+                                    <option value="min-250">250 m²</option>
+                                    <option value="min-500">500 m²</option>
+                                    <option value="min-1000">1000 m²</option>
+                                    <option value="min-5000">5000 m²</option>
+                                    <option value="min-10000">10000 m²</option>
+                                    <option value="min-100000">100000 m²</option>
+                                    <option value="min-500000">500000 m²</option>
+                                    <option value="min-1000000">1000000 m²</option>
+                                </optgroup>
+                                <optgroup label="Maximum" data-max-options="1">
+                                    <option value="max-50">50 m²</option>
+                                    <option value="max-75">75 m²</option>
+                                    <option value="max-100">100 m²</option>
+                                    <option value="max-150">150 m²</option>
+                                    <option value="max-250">250 m²</option>
+                                    <option value="max-500">500 m²</option>
+                                    <option value="max-1000">1000 m²</option>
+                                    <option value="max-5000">5000 m²</option>
+                                    <option value="max-10000">10000 m²</option>
+                                    <option value="max-100000">100000 m²</option>
+                                    <option value="max-500000">500000 m²</option>
+                                    <option value="max-1000000">1000000 m²</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+
+
+                        <div class="btn-group" style="margin-left:10px; float:right">
+                            <button type="submit" class="btn btn-block btn-success pull-right fa fa-search" style="min-width:96px; color:white; font-size:20px;border-radius: 34px;"></button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            @foreach (var item in Model)
+            {
+                <div class="box box-solid" style="border:1px solid #d8d8d8; border-radius:0; margin-bottom:-1px;">
+                    <div class="box-body clearfix">
+                        <div class="col-md-4" style="padding-left:0">
+                            <img src="~/Images/@item.kucukResim" style="width:200px; border-radius:3px" />
+                        </div>
+                        <div class="col-md-8" style="margin:auto auto auto auto">
+                            <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                <h4 class="text-bold" style="margin:0">@item.baslik</h4>
+                            </div>
+                            <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                <small style="margin:0">@item.iller.sehir &nbsp;/&nbsp;  @item.ilceler.ilce &nbsp; / &nbsp; @item.adres</small>
+                            </div>
+                            <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                <p class="fa fa-pie-chart" style="margin:0"> @item.odaSayisi1.odaSayisiAdi</p>&nbsp;&nbsp;&nbsp;
+                                <p class="fa fa-map-o" style="margin:0"> @item.metrekare m²</p>&nbsp;&nbsp;&nbsp;
+                                <p class="fa fa-database" style="margin:0"> @bulunduguKatGetir((int)item.bulunduguKat, (string)item.bulunduguKat1.bulunduguKatAdi)</p>
+                            </div>
+                            <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                <h3 style="margin:0; float:left">@item.fiyat ₺</h3>
+                                <small style="line-height: 26px;float:right;margin:0;">@(((DateTime)item.ilanTarihi).ToShortDateString())</small>
+                            </div>
+                        </div>
+                        @if (item.sahipId == kullaniciId)
+                        {
+                            <a href="/User/IlanKonutGuncelle/@item.KonutId" class="btn btn-github btn-xs" style="position:absolute;margin-left: -100px;margin-top: 35px;border-radius:0 20px;border-color:white;font-size:14px;">&nbsp;&nbsp;&nbsp;Edit&emsp;&emsp;</a>
+                        }
+                        <a href="/User/KonutGoster/@item.KonutId" class="btn btn-facebook btn-sm" style="position:absolute;margin-left: -54px;margin-top: 35px;border-radius:0 20px;border-color:white;font-size:14px;">Detay</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Content/Bootstrap/js/bootstrap.select.min.js"></script>

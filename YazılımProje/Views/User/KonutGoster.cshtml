@@ -1,0 +1,200 @@
+﻿@{
+    ViewBag.Title = "KonutGoster";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@model YazılımProje.Models.Konut
+@helper EsyaDurumuGetir(bool durum)
+{
+    if (durum)
+    {
+        Write("Eşyalı");
+    }
+    else
+    {
+        Write("Boş");
+    }
+}
+@helper TarihGetir(DateTime dt)
+{
+    Write(dt.ToString("dd MMMM yy"));
+}
+@helper AdresStyle(string adr)
+{
+    if (adr.Length > 45)
+    {
+        <span class="bolum sagbolumadres"> @adr </span>
+    }
+    else
+    {
+        <span class="bolum sagbolum" style="width:70%"> @adr </span>
+    }
+}
+@helper AciklamaStyle(string ack)
+{
+    if (ack.Length > 45)
+    {
+        <span class="bolum sagbolumaciklama">@ack </span>
+    }
+    else
+    {
+        <span class="bolum sagbolum" style="width:46%">@ack </span>
+    }
+}
+@helper depozitoGetir(decimal dp) 
+{ 
+    if (dp == 0) { Write("-"); }
+    else { Write(dp + " ₺"); }
+    }
+<!-- Main content -->
+<script src="~/Content/fotoslider/js/jssor.slider-23.0.0.min.js"></script>
+<script src="~/Content/fotoslider/js/image.js"></script>
+<link href="~/Content/fotoslider/js/image.css" rel="stylesheet" />
+<link href="~/Content/css/myStyles.css" rel="stylesheet" />
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+
+                    <h4 style="font-weight:600">&emsp;@Model.baslik</h4>
+                    <div class="box box-solid" style="border:1px solid darkcyan; border-radius:0; margin:10px 0">
+                        <div class="box-body clearfix">
+                            <div class="col-md-12" style="margin:auto; padding:0">
+                                <div class="col-md-5" style="float:left; text-align:center">
+                                    <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                        <small style="margin:0">@Model.iller.sehir&nbsp;/&nbsp;@Model.ilceler.ilce</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="float:left; text-align:center">
+                                    <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                        <p class="fa fa-pie-chart" style="margin:0; vertical-align:middle"> @Model.odaSayisi1.odaSayisiAdi</p>&emsp;
+                                        <p class="fa fa-map-o" style="margin:0; vertical-align:middle"> @Model.metrekare m²</p>&emsp;
+                                        <p class="fa fa-database" style="margin:0; vertical-align:middle"> @(Model.bulunduguKat). Kat</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="float:left; text-align:center">
+                                    <div class="row" style="margin-bottom:5px; margin-top:5px">
+                                        <h3 style="margin:0; font-weight:700">@Model.fiyat ₺</h3>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight:500; margin-top:20px">&emsp;İlan Sahibi</h4>
+                    <div class="box box-solid" style="border:1px solid darkcyan; border-radius:0; margin:10px 0">
+                        <div class="box-body clearfix">
+                            <div class="col-md-12" style="margin:auto; padding:0">
+
+                                <div class="adres_iletisim">
+                                    <div class="element_adres">
+                                        <span class="bolum solbolum">Ad Soyad</span>
+                                        <span class="bolum sagbolum">@Model.Kullanici.AdSoyad</span>
+                                    </div>
+                                    <div class="element_adres">
+                                        <span class="bolum solbolum">Telefon</span>
+                                        <span class="bolum sagbolum">@Model.Kullanici.Telefon</span>
+                                    </div>
+                                    <div class="element_adres">
+                                        <span class="bolum solbolum">e-mail</span>
+                                        <span class="bolum sagbolum">@Model.Kullanici.Email</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight:500; margin-top:20px">&emsp;Fotoğraflar</h4>
+                    <div class="box box-solid" style="border:1px solid darkcyan; border-radius:0; margin:10px 0">
+                        <div class="box-body clearfix">
+                            <div class="col-md-12" style="margin:auto; padding:0">
+                                <!--FotoSlider-->
+                                @{ Html.RenderAction("ResimGaleri"); }
+                                <!--FotoSlider-End-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="font-weight:500; margin-top:20px">&emsp;İlan Detayları</h4>
+                    <div class="box box-solid" style="border:1px solid darkcyan; border-radius:0; margin:10px 0">
+                        <div class="box-body clearfix">
+                            <div class="col-md-12" style="margin:auto; padding:0">
+                                <div class="lefside">
+                                    <div class="element">
+                                        <span class="bolum solbolum">İlan Numarası</span>
+                                        <span class="bolum sagbolum">@Model.KonutId</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">İlan Türü</span>
+                                        <span class="bolum sagbolum">@Model.KonutTuru1.konutTuruAdi</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">Kat Sayısı</span>
+                                        <span class="bolum sagbolum">@Model.katSayisi</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">İl</span>
+                                        <span class="bolum sagbolum">@Model.iller.sehir</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">İlçe</span>
+                                        <span class="bolum sagbolum">@Model.ilceler.ilce</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">Bulunduğu Kat</span>
+                                        <span class="bolum sagbolum">@Model.bulunduguKat1.bulunduguKatAdi</span>
+                                    </div>
+
+                                    <div class="element" style="border:none;">
+                                        <span class="bolum solbolum">Oda Sayısı</span>
+                                        <span class="bolum sagbolum">@Model.odaSayisi1.odaSayisiAdi</span>
+                                    </div>
+                                </div>
+                                <div class="rightside">
+                                    <div class="element">
+                                        <span class="bolum solbolum">Fiyat</span>
+                                        <span class="bolum sagbolum">@Model.fiyat ₺</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">Depozito</span>
+                                        <span class="bolum sagbolum">@depozitoGetir((decimal)Model.depozito)</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">Metrekare</span>
+                                        <span class="bolum sagbolum">@Model.metrekare m²</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">Isıtma Türü</span>
+                                        <span class="bolum sagbolum">@Model.isitmaTuru1.isitmaTuruAdi</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">Bina Yaşı</span>
+                                        <span class="bolum sagbolum">@Model.yasi</span>
+                                    </div>
+                                    <div class="element">
+                                        <span class="bolum solbolum">Eşya Durumu</span>
+                                        <span class="bolum sagbolum">@EsyaDurumuGetir((bool)Model.esyaDurumu)</span>
+                                    </div>
+                                    <div class="element" style="border:none;">
+                                        <span class=" bolum solbolum">
+                                            İlan Tarihi
+                                        </span>
+                                        <span class="bolum sagbolum">@TarihGetir((DateTime)Model.ilanTarihi)</span>
+                                    </div>
+                                </div>
+
+                                <div class="element2">
+                                    <span class="bolum solbolum" style="width:54%">Açıklama</span>
+                                    @AciklamaStyle(Model.aciklama)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

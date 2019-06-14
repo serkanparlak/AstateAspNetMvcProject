@@ -1,0 +1,318 @@
+﻿@{
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<section class="content-header">
+    <h1>YENİ GAYRİMENKUL EKLE<small>&nbsp; Arsa</small></h1>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/" method="post" class="form-horizontal" enctype="multipart/form-data">
+
+                <!-- Genel Özellikler -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title text-bold">1- Genel Özellikleri</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İlan Türü</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="kategori" name="kategori" onchange="DepozitoKontrol()">
+                                    <option value="0">Seçiniz</option>
+                                    <option value="1">Satılık</option>
+                                    <option value="2">Kiralık</option>
+                                    <option value="3">Kat Karşılığı</option>
+                                </select>
+                            </div>
+                            <small style="line-height:32px">Arsa</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İşyeri Türü</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="konutTuru" name="konutTuru">
+                                    <option value="0">Seçiniz</option>
+                                    @foreach (var emTur in ViewBag.ArsaTuru)
+                                    {
+                                        <option value="@emTur.arsaTuruId">@emTur.arsaTuruAdi</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İlan Başlığı</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="baslik" name="baslik">
+                            </div>
+                            <small style="line-height:32px">Örnek: Etiler'de satılık 3+1 lüks daire</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Fiyatı</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="fiyat" name="fiyat">
+                            </div>
+                            <small style="line-height:32px">Örnek; 150000 TL - Noktalama işareti kullanmayınız.</small>
+                        </div>
+
+                        <div class="form-group" id="depozitoKutu">
+                            <label class="col-sm-2 control-label">Depozito</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="depozito" name="depozito">
+                            </div>
+                            <small style="line-height:32px">Örnek; 500 TL - Noktalama işareti kullanmayınız.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konum Bilgileri -->
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title text-bold">2- Konum Bilgileri</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İl</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="il" name="il" onchange="IlceGetir()">
+                                    <option value="0">Seçiniz</option>
+                                    @foreach (var il in ViewBag.Iller)
+                                    {
+                                        <option value="@il.ilId">@il.sehir</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">İlçe</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="ilce" name="ilce">
+                                    <option value="0">Seçiniz</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Açık Adres</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" id="adres" name="adres" rows="3" placeholder="Ayrıntılı adres giriniz.."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konut Detayları -->
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title text-bold">3- Arsa Detayları</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Arsa m<sup>2</sup></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="metrekare" name="metrekare"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Yayınlanma Şekli</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" id="aktif" name="aktif">
+                                        <option value="0">Seçiniz</option>
+                                        <option value="1">Aktif</option>
+                                        <option value="2">Pasif</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Açıklama</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" id="aciklama" name="aciklama" rows="4" placeholder="Açıklama giriniz.."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Konut Detayları -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">4- Fotoğraf</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="col-md-12" id="resimOnizle">
+                            <!-- /.box-body style-->
+                            <style>
+                                .thumbnail {
+                                    height: 100px;
+                                    margin: 10px;
+                                    float: left;
+                                    border-radius: 10px;
+                                }
+                            </style>
+
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="text-center">
+                            <div class="btn btn-default btn-file btn-lg" id="resimbuton">
+                                <i class="fa fa-paperclip"></i> Ekle
+                                <input type="file" name="resimler" id="resimler" accept="image/png, image/jpeg" multiple>
+                            </div>
+                            <div id="eklenen" style="margin-top:10px" hidden>
+                                <p class="help-block fa fa-check-circle-o"> Eklendi : <a class="text-bold" id="adet"></a> adet</p>
+                                <br />
+                                <p class="help-block fa fa-info-circle"> Maximum 5 Resim yükleyebilirsin!</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-center col-sm-offset-3">
+                            <div class="alert alert-danger" id="alert-error" hidden></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-success btn-lg" onclick="VeriKontrol()"><i class="fa fa-home"></i> İlan Ver</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<!--3333333333333333333333333333333333333333333-->
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+
+    window.onload = function () {
+        if (window.File && window.FileList && window.FileReader) {
+            var filesInput = document.getElementById("resimler");
+            filesInput.addEventListener("change", function (event) {
+
+                var files = event.target.files; //Dosya yakalama
+                if (files.length > 0 && window.FormData !== undefined) {
+                    var data = new FormData();
+                    for (var x = 0; x < files.length; x++) {
+                        data.append("file" + x, files[x]);
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: '/User/ResimYukle/' + 3,
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                                $("#eklenen").fadeIn("fast");
+                                $("#adet").html(result.Mesaj);
+
+                                //Ekrana basma işlemleri
+                                for (var i = 0; i < files.length; i++) {
+                                    var file = files[i];
+                                    var picReader = new FileReader();
+                                    picReader.addEventListener("load", function (event) {
+                                        var picFile = event.target;
+                                        $("#resimOnizle").append("<img class='thumbnail' src='" + picFile.result + "'" + "title='" + picFile.name + "'/>");
+                                    });
+                                    //Resmi ekrana bas
+                                    picReader.readAsDataURL(file);
+                                }
+                                //son
+                            }
+                            else {
+                                $("#alert-error").slideDown("fast").html(result.Mesaj);
+                                setTimeout(function () {
+                                    $("#alert-error").slideUp("fast")
+                                }, 5000)
+                            }
+                        },
+                        error: function () {
+                            $("#alert-error").slideDown("fast").html("Hay Aksi! Yükleme başarısız oldu.");
+                            setTimeout(function () {
+                                $("#alert-error").slideUp("fast")
+                            }, 5000)
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    $(document).ready(function () {
+        var unloadEvent = function () {
+            $.ajax({
+                type: 'POST',
+                url: '/User/ResimTemizle'
+            });
+        };
+        window.addEventListener("beforeunload", unloadEvent);
+    })
+
+</script>
+
+<!--3333333333333333333333333333333333333333333-->
+
+<script>
+    function DepozitoKontrol() {
+        if ($("#kategori").val() == 2) {
+            $("#depozitoKutu").slideDown("fast")
+        }
+        else {
+            $("#depozitoKutu").slideUp("fast")
+        }
+    }
+    function IlceGetir() {
+        var ilId = $("#il").val();
+        $.ajax({
+            type: 'GET',
+            dataType: 'json',
+            url: "/User/IlceGetir/" + ilId,
+            success: function (responseData) {
+                if (responseData != null) {
+                    $('#ilce').find('option').remove().end();
+                    $('#ilce').append($('<option></option>').val('0').html('Seçiniz'));
+                    $.each(responseData, function (index, item) {
+                        $('#ilce').append($('<option></option>').val(item['ilceId']).html(item['ilce']));
+                    });
+                }
+            }
+        });
+    }
+    function VeriKontrol() {
+        var Veriler = $("form").serializeArray();
+        $.ajax({
+            url: "/User/YeniIlanArsa",
+            data: Veriler,
+            method: "POST",
+            success: function (snc) {
+                if (snc.IsSuccess) {
+                    alert(snc.Mesaj + "\nAnasayfaya yönlendirileceksiniz.");
+                    location.href = "/User/Index";
+                }
+                else {
+                    if (snc.Mesaj == "resimler") {
+                        $("#resimbuton").focus()
+                        $("#resimbuton").css("border-color", "red")
+                        setTimeout(function () {
+                            $("#resimbuton").css("border-color", "#d2d6de")
+                        }, 5000)
+                    }
+                    else {
+                        $("#" + snc.Mesaj).focus()
+                        $("#" + snc.Mesaj).css("border-color", "red")
+                        setTimeout(function () {
+                            $("#" + snc.Mesaj).css("border-color", "#d2d6de")
+                        }, 5000)
+                    }
+                    
+                }
+            }
+        })
+    }
+</script>

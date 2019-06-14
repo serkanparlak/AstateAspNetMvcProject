@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Proje | LogIn</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap -->
+    <link href="~/Content/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Content/css/font-awesame.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link href="~/Content/css/ionicons.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="/Home/Index/"><b>Ultra</b>EMLAK</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Oturum açmak için giriş yapın..</p>
+            <div class="alert alert-danger" id="mesaj" hidden>Bilgileri kontrol edin!</div>
+            <form action="" method="post" onsubmit="return false">
+                <div class="form-group has-feedback">
+                    <input id="Email" name="Email" type="text" class="form-control" placeholder="E-mail">
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input id="Sifre" name="Sifre" type="password" class="form-control" placeholder="Sifre">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat" onclick="LoginKontrol()">Giris</button>
+                    </div>
+                </div>
+            </form>
+            <h1 class="headline"></h1>
+            <a href="#">Şifremi unuttum</a><br>
+            <a href="/Home/Register" class="text-center">Yeni hesap olustur</a>
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Content/Bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        function LoginKontrol(){
+            var veri = $("form").serializeArray();
+            $.ajax({
+                url: "/Home/LoginKontrol/",
+                type : 'POST',
+                data: veri,
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        if (result.Giris == 1) {
+                            location.href = "/Admin/Index/"
+                        }
+                        else {
+                            location.href = "/User/Index/"
+                        }
+                    }
+                    else {
+                        $("#mesaj").slideDown("fast")
+                        setTimeout(function () {
+                            $("#mesaj").slideUp("fast")
+                        },5000)
+                    }
+                },
+                error: function () {
+                    return confirm("Bir hata oluştu");
+                }
+
+            })
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+    int i = 1;
+}
+@model List<string>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Hata Oluştu</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/ContentAdmin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animation CSS -->
+    <link href="~/ContentAdmin/css/animate.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/ContentAdmin/css/style.css" rel="stylesheet" />
+    <!-- color CSS -->
+    <link href="~/ContentAdmin/css/colors/default.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Preloader -->
+    <section id="wrapper" class="error-page">
+        <div class="error-box">
+            <div class="error-body text-center">
+                <h2 class="text-danger">Hatalı Giriş</h2>
+                @foreach (string item in Model)
+                {
+                    <h4 class="text-info text-uppercase" background-color="#ccc">@i - @item</h4>
+                    i++;
+                }
+                <a href="@ViewBag.Back" class="btn btn-danger btn-rounded waves-effect waves-light m-b-40">Geri dön</a>
+            </div>
+            <footer class="text-center" style="color:#58666e; ">2017 © UltraEmlak Admin.</footer>
+        </div>
+    </section>
+    <!-- jQuery -->
+    <script src="~/ContentAdmin/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/ContentAdmin/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

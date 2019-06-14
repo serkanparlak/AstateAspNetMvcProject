@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "MesajYaz";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@model YazılımProje.Models.Mesajlar
+<div class="row bg-title">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4>Mesajlar Oluştur</h4>
+    </div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="/Admin/Index/">Admin</a></li>
+            <li><a href="/Admin/Mesajlar/">Mesajlar</a></li>
+            <li class="active">Mesaj Oluştur</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="white-box">
+
+        @using (Html.BeginForm("MesajYaz", "Admin", FormMethod.Post, new { @class = "form-horizontal form-material" }))
+        {
+            <div class="form-group">
+                <label class="col-sm-12">Alıcı : </label>
+                <div class="col-sm-4">
+                    @*@Html.DropDownListFor(x => x.aliciID, new SelectList(ViewBag.Users, "KullaniciId", "AdSoyad", ViewBag.Alici), new { @class = "form-control form-control-line"})*@
+                    @Html.DropDownListFor(x => x.aliciID, (SelectList)ViewBag.Users, new { @class = "form-control form-control-line" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12">Konu :</label>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(x => x.konu, new { required = "true", @class = "form-control form-control-line" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12">Message :</label>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(x => x.mesaj, new { rows = "5", required = "true", @class = "form-control form-control-line" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-primary">Gönder</button>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>

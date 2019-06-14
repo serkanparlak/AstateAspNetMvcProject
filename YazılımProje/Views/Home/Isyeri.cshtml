@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.Title = "Isyeri";
+    Layout = "~/Views/Shared/HomeLayout.cshtml";
+}
+<style>
+    .ust_baslik_h1 {
+        background: rgba(204, 255, 0, 0.53);
+        color: white;
+        margin-left: 300px;
+        padding-left: 130px;
+        margin-right: 442px;
+        padding-bottom: 20px;
+    }
+</style>
+
+<div style="position:absolute;">
+    <img style="width:100%; height:85%" src="~/Images/ilanArkaPlan.jpg" />
+</div>
+
+<section class="content">
+    <div class="row">
+        <!-- /.col -->
+        <div class="col-md-10 col-md-offset-1" style="margin-top:4%">
+            <h1 class="ust_baslik_h1">İŞYERİ</h1>
+            <h2 style="text-align:center; color:white; margin-bottom:20px; background-color:rgba(20,200,200,0.5)">Sen o işyerini hayal et, gerisi UltraEMLAK</h2>
+            <div class="box" style="border-top:none; border-radius:0; padding:20px; background-color:rgba(0, 26, 42, 0.84);margin-left: -5%;width: 110%;">
+                <div class="box-body no-padding" style="font-size:0">
+                    <form action="~/Home/IsyeriSorgula/" method="post">
+                        <div class="btn-group" style="margin:5px;">
+                            <select class="selectpicker" id="kategori" name="kategori" style="font-size:15px;" data-width="auto">
+                                <option value="0" selected>Tümü</option>
+                                <option value="1">Satılık</option>
+                                <option value="2">Kiralık</option>
+                                <option value="3">Devren</option>
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin:5px">
+                            <select class="selectpicker" id="konutturu" name="konutturu" title="İşyeri Türü" multiple data-width="170" data-max-options="5">
+                                @foreach (var item in ViewBag.isyeriTuru)
+                                {
+                                    <option value="@item.isyeriTuruId">@item.isyeriTuruAdi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin:5px">
+                            <select class="selectpicker" id="il" name="il" title="Şehir" data-live-search="true" data-width="190">
+                                @foreach (var item in ViewBag.il)
+                                {
+                                    <option value="@item.ilId">@item.sehir</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin:5px">
+                            <select class="selectpicker" data-width="auto" id="odasayisi" name="odasayisi" title="Oda Sayısı" multiple data-max-options="5">
+                                @foreach (var item in ViewBag.OdaSayisi)
+                                {
+                                    <option value="@item.odaSayisiId">@item.odaSayisiAdi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin:5px">
+                            <select class="selectpicker" data-width="180" id="isitmaturu" name="isitmaturu" title="Isıtma Türü" multiple data-max-options="5">
+                                @foreach (var item in ViewBag.isitmaTuru)
+                                {
+                                    <option value="@item.isitmaTuruId">@item.isitmaTuruAdi</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin:5px">
+                            <select class="selectpicker" id="fiyat" name="fiyat" title="Fiyat (₺)" multiple data-width="140">
+                                <optgroup label="Minimum" data-max-options="1">
+                                    <option value="min-500">500 ₺</option>
+                                    <option value="min-1000">1000 ₺</option>
+                                    <option value="min-5000">5000 ₺</option>
+                                    <option value="min-10000">10000 ₺</option>
+                                    <option value="min-50000">50000 ₺</option>
+                                    <option value="min-100000">100000 ₺</option>
+                                    <option value="min-250000">250000 ₺</option>
+                                    <option value="min-500000">500000 ₺</option>
+                                </optgroup>
+                                <optgroup label="Maximum" data-max-options="1">
+                                    <option value="max-500">500 ₺</option>
+                                    <option value="max-1000">1000 ₺</option>
+                                    <option value="max-5000">5000 ₺</option>
+                                    <option value="max-10000">10000 ₺</option>
+                                    <option value="max-50000">50000 ₺</option>
+                                    <option value="max-100000">100000 ₺</option>
+                                    <option value="max-250000">250000 ₺</option>
+                                    <option value="max-500000">500000 ₺</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="btn-group" style="margin : 5px">
+                            <select class="selectpicker" id="metrekare" name="metrekare" title="Metrekare (m²)" multiple data-width="140">
+                                <optgroup label="Minimum" data-max-options="1">
+                                    <option value="min-50">50 m²</option>
+                                    <option value="min-75">75 m²</option>
+                                    <option value="min-100">100 m²</option>
+                                    <option value="min-150">150 m²</option>
+                                    <option value="min-250">250 m²</option>
+                                    <option value="min-500">500 m²</option>
+                                    <option value="min-1000">1000 m²</option>
+                                    <option value="min-5000">5000 m²</option>
+                                    <option value="min-10000">10000 m²</option>
+                                    <option value="min-100000">100000 m²</option>
+                                    <option value="min-500000">500000 m²</option>
+                                    <option value="min-1000000">1000000 m²</option>
+                                </optgroup>
+                                <optgroup label="Maximum" data-max-options="1">
+                                    <option value="max-50">50 m²</option>
+                                    <option value="max-75">75 m²</option>
+                                    <option value="max-100">100 m²</option>
+                                    <option value="max-150">150 m²</option>
+                                    <option value="max-250">250 m²</option>
+                                    <option value="max-500">500 m²</option>
+                                    <option value="max-1000">1000 m²</option>
+                                    <option value="max-5000">5000 m²</option>
+                                    <option value="max-10000">10000 m²</option>
+                                    <option value="max-100000">100000 m²</option>
+                                    <option value="max-500000">500000 m²</option>
+                                    <option value="max-1000000">1000000 m²</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="btn-group" style="margin:5px; float:right">
+                            <button type="submit" class="btn btn-flat pull-right fa fa-search" style="min-width:76px; color:white; font-size:20px;border-radius: 34px; background-color:rgba(193, 0, 0, 0.75)"></button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
